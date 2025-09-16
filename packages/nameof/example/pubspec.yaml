@@ -8,7 +8,8 @@ environment:
 
 
 dependencies:
-  nameof_annotation: ^0.2.0
+  nameof_annotation:
+    path: ../../nameof_annotation/
 
 dev_dependencies:
   lints: ^3.0.0
