@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:nameof/src/model/element_info.dart';
 import 'package:nameof/src/util/element_extensions.dart';
 import 'package:nameof/src/util/string_extensions.dart';
@@ -18,42 +18,42 @@ class NameofVisitor extends ElementVisitor2<void> {
   NameofVisitor(this.className);
 
   @override
-  void visitConstructorElement(ConstructorElement element) {
-    if (element.name == null) {
+  void visitConstructorElement(ConstructorElement2 element) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    constructors[element.name!] = _getElementInfo(element);
+    constructors[element.name3!] = _getElementInfo(element);
   }
 
   @override
-  void visitFieldElement(FieldElement element) {
+  void visitFieldElement(FieldElement2 element) {
     if (element.isSynthetic) {
       return;
     }
 
-    if (element.name == null) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    fields[element.name!] = _getElementInfo(element);
+    fields[element.name3!] = _getElementInfo(element);
   }
 
   @override
-  void visitMethodElement(MethodElement element) {
-    if (element.name == null) {
+  void visitMethodElement(MethodElement2 element) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    functions[element.name!] = _getElementInfo(element);
+    functions[element.name3!] = _getElementInfo(element);
   }
 
-  ElementInfo _getElementInfo(Element element) {
-    if (element.name == null) {
+  ElementInfo _getElementInfo(Element2 element) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    final isPrivate = element.name!.startsWith('_');
+    final isPrivate = element.name3!.startsWith('_');
     final isAnnotated = element.hasAnnotation(NameofKey);
     final isIgnore = element.hasAnnotation(NameofIgnore);
 
@@ -63,11 +63,11 @@ class NameofVisitor extends ElementVisitor2<void> {
                     .getAnnotation(NameofKey)
                     ?.getField('name')
                     ?.toStringValue() ??
-                element.name
-            : element.name)!
+                element.name3
+            : element.name3)!
         .cleanFromServiceSymbols();
 
-    String originalName = element.name!.cleanFromServiceSymbols();
+    String originalName = element.name3!.cleanFromServiceSymbols();
 
     return ElementInfo(
         name: name,
@@ -78,31 +78,27 @@ class NameofVisitor extends ElementVisitor2<void> {
   }
 
   @override
-  void visitClassElement(ClassElement element) {
+  void visitClassElement(ClassElement2 element) {
   }
 
   @override
-  void visitEnumElement(EnumElement element) {
+  void visitEnumElement(EnumElement2 element) {
   }
 
   @override
-  void visitExtensionElement(ExtensionElement element) {
+  void visitExtensionElement(ExtensionElement2 element) {
   }
 
   @override
-  void visitExtensionTypeElement(ExtensionTypeElement element) {
+  void visitExtensionTypeElement(ExtensionTypeElement2 element) {
   }
 
   @override
-  void visitFieldFormalParameterElement(FieldFormalParameterElement element) {
+  void visitFieldFormalParameterElement(FieldFormalParameterElement2 element) {
   }
 
   @override
-  void visitFormalParameterElement(FormalParameterElement element) {
-  }
-
-  @override
-  void visitGenericFunctionTypeElement(GenericFunctionTypeElement element) {
+  void visitGenericFunctionTypeElement(GenericFunctionTypeElement2 element) {
   }
 
   @override
@@ -111,52 +107,52 @@ class NameofVisitor extends ElementVisitor2<void> {
       return;
     }
 
-    if (element.name == null) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    if (properties.containsKey(element.name!)) {
-      properties[element.name!] = PropertyInfo.fromElementInfo(
+    if (properties.containsKey(element.name3!)) {
+      properties[element.name3!] = PropertyInfo.fromElementInfo(
           _getElementInfo(element),
-          isGetter: true, isSetter: properties[element.name!]!.isSetter);
+          isGetter: true, isSetter: properties[element.name3!]!.isSetter);
     } else {
-      properties[element.name!] = PropertyInfo.fromElementInfo(
+      properties[element.name3!] = PropertyInfo.fromElementInfo(
           _getElementInfo(element),
           isGetter: true, isSetter: false);
     }
   }
 
   @override
-  void visitLabelElement(LabelElement element) {
+  void visitLabelElement(LabelElement2 element) {
   }
 
   @override
-  void visitLibraryElement(LibraryElement element) {
+  void visitLibraryElement(LibraryElement2 element) {
   }
 
   @override
   void visitLocalFunctionElement(LocalFunctionElement element) {
-    if (element.name == null) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    functions[element.name!] = _getElementInfo(element);
+    functions[element.name3!] = _getElementInfo(element);
   }
 
   @override
-  void visitLocalVariableElement(LocalVariableElement element) {
+  void visitLocalVariableElement(LocalVariableElement2 element) {
   }
 
   @override
-  void visitMixinElement(MixinElement element) {
+  void visitMixinElement(MixinElement2 element) {
   }
 
   @override
-  void visitMultiplyDefinedElement(MultiplyDefinedElement element) {
+  void visitMultiplyDefinedElement(MultiplyDefinedElement2 element) {
   }
 
   @override
-  void visitPrefixElement(PrefixElement element) {
+  void visitPrefixElement(PrefixElement2 element) {
 
   }
 
@@ -166,38 +162,42 @@ class NameofVisitor extends ElementVisitor2<void> {
       return;
     }
 
-    if (element.name == null) {
+    if (element.name3 == null) {
       throw UnsupportedError('Element does not have a name!');
     }
 
-    if (properties.containsKey(element.name!)) {
-      properties[element.name!] = PropertyInfo.fromElementInfo(
+    if (properties.containsKey(element.name3!)) {
+      properties[element.name3!] = PropertyInfo.fromElementInfo(
           _getElementInfo(element),
-          isGetter: properties[element.name!]!.isGetter, isSetter: true);
+          isGetter: properties[element.name3!]!.isGetter, isSetter: true);
     } else {
-      properties[element.name!] = PropertyInfo.fromElementInfo(
+      properties[element.name3!] = PropertyInfo.fromElementInfo(
           _getElementInfo(element),
           isGetter: false, isSetter: true);
     }
   }
 
   @override
-  void visitSuperFormalParameterElement(SuperFormalParameterElement element) {
+  void visitSuperFormalParameterElement(SuperFormalParameterElement2 element) {
+  }
+
+  @override
+  void visitTopLevelVariableElement(TopLevelVariableElement2 element) {
+  }
+
+  @override
+  void visitTypeAliasElement(TypeAliasElement2 element) {
+  }
+
+  @override
+  void visitTypeParameterElement(TypeParameterElement2 element) {
+  }
+
+  @override
+  void visitFormalParameterElement(FormalParameterElement element) {
   }
 
   @override
   void visitTopLevelFunctionElement(TopLevelFunctionElement element) {
-  }
-
-  @override
-  void visitTopLevelVariableElement(TopLevelVariableElement element) {
-  }
-
-  @override
-  void visitTypeAliasElement(TypeAliasElement element) {
-  }
-
-  @override
-  void visitTypeParameterElement(TypeParameterElement element) {
   }
 }

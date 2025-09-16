@@ -1,4 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:build/build.dart';
 import 'package:nameof/src/nameof_code_processor.dart';
 import 'package:nameof/src/util/enum_extensions.dart';
@@ -14,19 +15,19 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
   @override
   String generateForAnnotatedElement(
-      Element element, ConstantReader annotation, BuildStep buildStep) {
+      Element2 element, ConstantReader annotation, BuildStep buildStep) {
     if (element.kind != ElementKind.CLASS && element.kind.name != 'MIXIN') {
       throw UnsupportedError("This is not a class (or mixin)!");
     }
 
     final options = _parseConfig(annotation);
 
-    final visitor = NameofVisitor(element.name ??
+    final visitor = NameofVisitor(element.name3 ??
         () {
           throw UnsupportedError(
               'Class or mixin element does not have a name!');
         }());
-    element.visitChildren(visitor);
+    element.visitChildren2(visitor);
 
     final code = NameofCodeProcessor(options, visitor).process();
 
