@@ -5,20 +5,14 @@ class PropertyInfo extends ElementInfo {
   final bool isGetter;
 
   PropertyInfo({
-    required String name,
-    required String originalName,
-    required bool isPrivate,
-    required bool isAnnotated,
-    required bool isIgnore,
+    required super.name,
+    required super.originalName,
+    required super.isPrivate,
+    required super.isAnnotated,
+    required super.isIgnore,
     required this.isSetter,
     required this.isGetter,
-  })  : assert(isGetter ^ isSetter),
-        super(
-            name: name,
-            originalName: originalName,
-            isIgnore: isIgnore,
-            isPrivate: isPrivate,
-            isAnnotated: isAnnotated);
+  })  : assert(isGetter ^ isSetter);
 
   factory PropertyInfo.fromElementInfo(ElementInfo based,
       {required bool isGetter, required bool isSetter}) {

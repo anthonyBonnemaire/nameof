@@ -51,7 +51,7 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
     return NameofOptions(
         coverage:
             coverageAnnotation ?? coverageConfig ?? Coverage.includeImplicit,
-        scope: NameofScope.onlyPublic);
+        scope: NameofScope.all);
   }
 
   T? enumValueForDartObject<T>(
