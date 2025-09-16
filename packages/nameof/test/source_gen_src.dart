@@ -55,8 +55,8 @@ class ModelTest2 {
 
 @ShouldGenerate(r'''
 /// Container for names of elements belonging to the [ModelTest2] class
-abstract class NameofModelTest2 {
-  static const String className = 'ModelTest2';
+abstract class NameofModelTest3 {
+  static const String className = 'ModelTest3';
 
   static const String constructorNew = 'new';
 
@@ -64,6 +64,7 @@ abstract class NameofModelTest2 {
   static const String fieldId = 'id';
 
   static const String propertyGetDescription = 'description';
+  static const String functionPrivateSetCal = '_setCal';
 }
 ''')
 @Nameof(scope : NameofScope.all)
