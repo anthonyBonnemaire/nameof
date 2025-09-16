@@ -6,7 +6,7 @@ import 'package:source_gen_test/annotations.dart';
 abstract class NameofModelTest {
   static const String className = 'ModelTest';
 
-  static const String constructor = '';
+  static const String constructorNew = 'new';
 
   static const String fieldName = 'name';
   static const String fieldId = 'id';
@@ -34,7 +34,7 @@ class ModelTest {
 abstract class NameofModelTest2 {
   static const String className = 'ModelTest2';
 
-  static const String constructor = '';
+  static const String constructorNew = 'new';
 
   static const String fieldName = 'name';
   static const String fieldId = 'id';
@@ -51,6 +51,29 @@ class ModelTest2 {
   String get description => 'Description';
 
   ModelTest2(this.name, this.id);
+}
+
+@ShouldGenerate(r'''
+/// Container for names of elements belonging to the [ModelTest2] class
+abstract class NameofModelTest2 {
+  static const String className = 'ModelTest2';
+
+  static const String constructorNew = 'new';
+
+  static const String fieldName = 'name';
+  static const String fieldId = 'id';
+
+  static const String propertyGetDescription = 'description';
+}
+''')
+@Nameof(scope : NameofScope.all)
+class ModelTest3 {
+  final String name;
+  final int id;
+
+  void _setCal() {}
+
+  ModelTest3(this.name, this.id);
 }
 
 @ShouldGenerate(r'''
@@ -75,7 +98,7 @@ mixin MixinTest3 {
 abstract class NameofCinema {
   static const String className = 'Cinema';
 
-  static const String constructor = '';
+  static const String constructorNew = 'new';
 
   static const String fieldStreet = 'street';
   static const String fieldValue = 'value';

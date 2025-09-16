@@ -10,8 +10,6 @@ void main() {
       expect(NameofModelOne.fieldName, 'name');
       expect(NameofModelOne.fieldId, 'id');
       expect(NameofModelOne.functionBuildValue, 'buildValue');
-      expect(NameofModelOne.fieldPrivateBehindProp, '_behindProp');
-      expect(NameofModelOne.functionPrivateCalculateAge, '_calculateAge');
       expect(NameofModelOne.propertySetBehindProp, 'behindProp');
     });
 

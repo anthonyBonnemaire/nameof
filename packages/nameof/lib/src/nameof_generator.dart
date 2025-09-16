@@ -33,7 +33,7 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
     return code;
   }
 
-  NameofOptions _parseConfig(ConstantReader annotation) {
+  Coverage _parseCoverage(ConstantReader annotation) {
     final coverageConfigString = config['coverage']?.toString();
 
     bool covTest(Coverage coverage) =>
@@ -47,11 +47,33 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
       annotation.read('coverage'),
       Coverage.values,
     );
+    return coverageAnnotation ?? coverageConfig ?? Coverage.includeImplicit;
+  }
+
+  NameofScope _parseScope(ConstantReader annotation) {
+    final scopeConfigString = config.containsKey('scope') ? config['scope']?.toString() : '';
+
+    bool scopeTest(NameofScope scope) =>
+        scopeConfigString == scope.toShortString();
+
+    final scopeConfig = NameofScope.values.any(scopeTest)
+        ? NameofScope.values.firstWhere(scopeTest)
+        : null;
+
+    final scopeConstantReader = annotation.peek('scope');
+    final scopeAnnotation = scopeConstantReader != null ? enumValueForDartObject(
+      scopeConstantReader,
+      NameofScope.values,
+    ) : null;
+
+    return scopeAnnotation ?? scopeConfig ?? NameofScope.onlyPublic;
+  }
+
+  NameofOptions _parseConfig(ConstantReader annotation) {
 
     return NameofOptions(
-        coverage:
-            coverageAnnotation ?? coverageConfig ?? Coverage.includeImplicit,
-        scope: NameofScope.all);
+        coverage: _parseCoverage(annotation),
+        scope: _parseScope(annotation));
   }
 
   T? enumValueForDartObject<T>(

@@ -56,7 +56,6 @@ class NameofVisitor extends ElementVisitor2<void> {
     final isPrivate = element.name!.startsWith('_');
     final isAnnotated = element.hasAnnotation(NameofKey);
     final isIgnore = element.hasAnnotation(NameofIgnore);
-    print(' ${element.name} : $isAnnotated');
 
 
     String? name = (isAnnotated
@@ -67,10 +66,8 @@ class NameofVisitor extends ElementVisitor2<void> {
                 element.name
             : element.name)!
         .cleanFromServiceSymbols();
-    print('name : $name');
 
     String originalName = element.name!.cleanFromServiceSymbols();
-    print('originalName : $originalName');
 
     return ElementInfo(
         name: name,

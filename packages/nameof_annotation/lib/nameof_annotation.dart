@@ -6,8 +6,9 @@ library nameof_annotation;
 class Nameof {
   /// This setting response for including and excluding elements of class
   final Coverage? coverage;
+  final NameofScope? scope;
 
-  const Nameof({this.coverage});
+  const Nameof({this.coverage, this.scope});
 }
 
 ///  Annotation for ignore inner elements of class (or mixin)
