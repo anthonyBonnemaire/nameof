@@ -4,7 +4,7 @@ version: 1.1.0
 # homepage: https://www.example.com
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.8.0
 
 
 dependencies:
@@ -12,7 +12,7 @@ dependencies:
     path: ../../nameof_annotation/
 
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^6.1.0
   build_runner:
   # nameof: ^0.2.0
   nameof:

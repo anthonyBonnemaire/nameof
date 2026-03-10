@@ -33,7 +33,7 @@ class Car {
       : this(price, weigth, year, 'Sedan');
 }
 
-@Nameof(coverage: Coverage.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit, scope: NameofScope.all)
 class Sample extends BaseClass with VinilMixin {
   final String name;
   String _behind = '';
