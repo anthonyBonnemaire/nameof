@@ -2,6 +2,10 @@ import 'package:nameof_annotation/nameof_annotation.dart';
 
 part 'models.nameof.dart';
 
+void main() {
+
+}
+
 @nameof
 class BaseClass {
   final double price;
